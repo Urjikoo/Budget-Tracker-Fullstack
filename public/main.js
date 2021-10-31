@@ -1,50 +1,50 @@
 // document.querySelector('#add').addEventListener('click', addNewGoal)
 
-const buttons = document.getElementsByClassName('addGoal')
+// const { method } = require("lodash");
 
-Array.from(buttons).forEach(button => {
-  button.addEventListener('click', buttonStuff)
-})
+const buttons = document.getElementsByClassName("addGoal");
+Array.from(buttons).forEach((button) => {
+  button.addEventListener("click", buttonStuff);
+});
 
 function buttonStuff(button) {
-  console.log("You have clicked the button")
+  console.log("You have clicked the button");
   // Grab the parent
-  const parent = button.target.parentNode
-  console.log(parent, 'button.target:', button.target)
-  console.log(parent.childNodes)
-  console.log(parent.childNodes[1].childNodes[1].value)
-  const goal = parent.childNodes[1].childNodes[1].value
-  const amount = parent.childNodes[3].childNodes[1].value
-  const balance = parent.childNodes[5].childNodes[1].value
-  const note = parent.childNodes[7].childNodes[1].value
+  const parent = button.target.parentNode;
+  console.log(parent, "button.target:", button.target);
+  console.log(parent.childNodes);
+  console.log(parent.childNodes[1].childNodes[1].value);
+  const goal = parent.childNodes[1].childNodes[1].value;
+  const amount = parent.childNodes[3].childNodes[1].value;
+  const balance = parent.childNodes[5].childNodes[1].value;
+  const note = parent.childNodes[7].childNodes[1].value;
 
-  console.log(goal, amount, balance, note)
+  console.log(goal, amount, balance, note);
 
-  fetch('budget', {
-    method: 'post',
-    headers: { 'Content-Type': 'application/json' },
+  fetch("budget", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      'goal': goal,
-      'amount': amount,
-      'balance': balance,
-      'note': note,
+      goal: goal,
+      amount: amount,
+      balance: balance,
+      note: note,
       //add user name
-    })
+    }),
   })
-    .then(response => {
-      if (response.ok) return response.json()
+    .then((response) => {
+      if (response.ok) return response.json();
     })
-    .then(data => {
-      console.log(data)
-      window.location.reload(true)
-    })
+    .then((data) => {
+      console.log(data);
+      window.location.reload(true);
+    });
 }
 
 //adds new input to the "table"
 function addNewGoal() {
-  console.log('function accessed')
+  console.log("function accessed");
 }
-
 
 // Array.from(thumbUp).forEach(function(element) {
 //       element.addEventListener('click', function(){
@@ -70,8 +70,6 @@ function addNewGoal() {
 //       });
 // });
 
-
-
 // Array.from(trash).forEach(function (element) {
 //   element.addEventListener('click', function () {
 //     const name = this.parentNode.parentNode.childNodes[1].innerText
@@ -91,25 +89,40 @@ function addNewGoal() {
 //   });
 // });
 
-//button + its click event listener is triggering the deletion 
+//button + its click event listener is triggering the deletion
 //the trash function get accessed
 //create a fetch and an app.delete
 //the database entries get gathered
 // clears out database
 //returns removed list from the dom
 
-document.querySelector('#clear').addEventListener('click', clearList)
+document.querySelector("#clear").addEventListener("click", clearList);
 
 function clearList() {
-  fetch('clear', {
-    method: 'delete',
+  fetch("clear", {
+    method: "delete",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  }).then(function (response) {
+    window.location.reload();
+  });
+}
+// document.querySelector(".deleteButton").addEventListener("click", deleteButton);
+
+function deleteButton(event) {
+  let idValue = event.target.value;
+  console.log("delete value", idValue);
+  fetch("deleteOne", {
+    method: "delete",
+    headers: {
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-
-    })
+      id: idValue,
+    }),
   }).then(function (response) {
-        window.location.reload()
-      })
+    window.location.reload();
+  });
 }

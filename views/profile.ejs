@@ -38,7 +38,7 @@
       
       <button type="submit" class="addGoal"></button>
       </ul>
-      <% console.log(userEntries) %>
+      
       <% for(let i = 0; i < userEntries.length; i++) { %>
         <ul class="entry">
           <section class="dividers">
@@ -52,6 +52,10 @@
         </section>
         <section class="dividers">
           <input class ="note" placeholder="your note" value="<%= userEntries[i].note %>">
+        </section>
+        <section>
+          
+        <button value='<%= userEntries[i]._id %>' class="delete" onclick="deleteButton(event)"> delete</button>
         </section>
         
         <button type="submit" class="addGoal"></button>
