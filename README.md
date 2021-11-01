@@ -1,7 +1,4 @@
-<img src = "budget-1.png" width = 100%>
-<img src = "budget-list.png" width = 100%>
-
-
+![Project](Project.png)
 ## Goal
 Create a fullstack team Budget App with User Login where team members can track how much of their budget they have left per project. 
 
